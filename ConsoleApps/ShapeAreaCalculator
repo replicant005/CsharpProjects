@@ -1,0 +1,95 @@
+using System;
+
+namespace ShapeArea
+{ 
+class Program
+    {
+        // entry point of the program 
+        static void Main(string[] args) {
+            // a char variable for storing the user input for the shape
+            char answer;
+            // a float variable to store the area calculated 
+            float result;
+
+            // array holding the valid options for user input
+            char[] validAnswers = { 'r', 'c', 's' };
+
+            // the value of boolean over here doesnt really matters as i am changing it explicitly within the loop , the end result will be true if the user enteres y and false if user enters n
+            Boolean Continue = false;
+            char canContinue;
+
+            do
+            {
+                Console.WriteLine("what shape would u like to find area of? Enter " + "\n" +
+                    " r for rectangle " + "\n" +
+                    " s for square " + "\n" +
+                    " c for circle "
+                    );
+
+                answer = Console.ReadKey().KeyChar;
+                // adds a new line
+                Console.WriteLine("\n");
+
+                if (answer != null)
+                {
+                    if (answer == 'r')
+                    {
+                        Console.WriteLine("Please enter the height of the rectangle. ");
+                        float height = float.Parse(Console.ReadLine());
+
+                        Console.WriteLine("Please enter the width of the rectangle. ");
+                        float width = float.Parse(Console.ReadLine());
+
+                        result = height * width;
+                        Console.WriteLine(result);
+                    }
+
+                    else if (answer == 's')
+                    {
+                        Console.WriteLine("Please enter the size of the side of square. ");
+                        float side = float.Parse(Console.ReadLine());
+
+                        result = side * side;
+                        Console.WriteLine(result);
+                    }
+
+                    else if (answer == 'c')
+                    {
+                        Console.WriteLine("Please enter the radius to calculate the area of the circle. ");
+                        float radius = float.Parse(Console.ReadLine());
+
+                        result = (float)Math.PI * (radius * radius);
+                        Console.WriteLine(result);
+                    }
+                    // validAnswers.Contains returns true if the user input is within the valid answers specified array 
+                    // otherwise if it would return untrue, the ! sign is not assigning it as untrue rather it is just 
+                    // checking if validAnswers.Contains(answer)  is false or not , if it is false then !(NOT) operator just flips the result
+                    // as in it gives a true otherwise if the validAnswers.Contains(answer) gives us true then ! flips the result to false 
+                    // the else condition gets executed when the final result we get is true , ie only when the array doesnt have the user entered char
+                    else if (!validAnswers.Contains(answer))
+                    {
+                        Console.WriteLine("please enter a valid input");
+                    }
+                    // weird thing , but i also got to know that we cannot have a condition after else
+                }
+                else
+                {
+                    Console.WriteLine("user has not entered anything");
+                }
+
+                Console.WriteLine("Do u wanna keep playing, enter y if yes , n if not");
+                canContinue = Console.ReadKey().KeyChar;
+                if (canContinue == 'y')
+                {   
+                    Continue = true;
+
+                }
+                else { Continue = false; }
+                Console.WriteLine("\n");
+
+            } while (Continue);
+        }
+         // the  logic here is that uptill the condition for while is true the loop will keep iterating, however the point when the condition becomes false the loop stops
+    }
+   
+}
