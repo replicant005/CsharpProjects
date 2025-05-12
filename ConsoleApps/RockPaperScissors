@@ -1,0 +1,119 @@
+using System;
+using System.Net.Http.Headers;
+
+namespace RockPaperScissors { 
+
+    class Program {
+
+        static void Main(string[] args)
+        {
+            int playerScore = 0;
+            int enemyScore = 0;
+            bool canContinue = true;
+            // initializing object of Random class as we need to use Next method and we can't use it directly as it is not a static method
+            Random random = new Random();
+
+            Console.WriteLine(" Welcome to rock paper scissors! ");
+            
+            do
+            {
+                // run this logic untill playerScore and enemyScore is not equal to 3 
+                while (playerScore != 3 && enemyScore != 3)
+                {
+                    Console.WriteLine("Player Score - " + playerScore + "Enemy Score - " + enemyScore);
+                    Console.WriteLine("Please enter 'r' for rock, 'p' for papers, 's' for scissors ");
+
+                    // the ReadKey returns an object containing the info of the key pressed, the KeyChar method extracts the character pressed
+                    char playerChoice = Console.ReadKey().KeyChar;
+
+
+                    int enemyChoice = random.Next(0, 3);
+
+                    if (enemyChoice == 0)
+                    {
+                        Console.WriteLine("Enemy chose rock! ");
+
+                        if (playerChoice == 'r')
+                        {
+                            Console.WriteLine(" Its a Tie! ");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                        else if (playerChoice == 'p')
+                        {
+                            playerScore++;
+                            Console.WriteLine("1 point to player");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                        else if (playerChoice == 's')
+                        {
+                            enemyScore++;
+                            Console.WriteLine("1 point to enemy ");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                    }
+
+                    else if (enemyChoice == 1)
+                    {
+                        Console.WriteLine("Enemy chose paper");
+
+                        if (playerChoice == 'r')
+                        {
+                            enemyScore++;
+                            Console.WriteLine("1 point to enemy");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                        else if (playerChoice == 'p')
+                        {
+                            Console.WriteLine("Its a tie! ");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                        else if (playerChoice == 's')
+                        {
+                            playerScore++;
+                            Console.WriteLine("1 point to player");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                    }
+
+                    else if (enemyChoice == 2)
+                    {
+                        Console.WriteLine("Enemy chose scissors");
+                        if (playerChoice == 'r')
+                        {
+                            playerScore++;
+                            Console.WriteLine("1 point to player");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                        else if (playerChoice == 'p')
+                        {
+                            enemyScore++;
+                            Console.WriteLine("1 point to enemy");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+                        else if (playerChoice == 's')
+                        {
+                            Console.WriteLine("Its a tie! ");
+                            Console.WriteLine(playerScore + "" + enemyScore);
+                        }
+
+                    }
+                }
+
+                Console.WriteLine("Do you wanna continue playing ? enter 'y' if yes , press any key if no");
+                char userChoice = Console.ReadKey().KeyChar;
+                if (userChoice != 'y')
+                {
+                    canContinue = !canContinue;
+                }
+                else {
+                    playerScore = 0;
+                    enemyScore = 0;
+                }
+            } while (canContinue);
+
+        }
+
+    }
+
+}
+   
