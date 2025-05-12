@@ -98,7 +98,13 @@ namespace RockPaperScissors {
 
                     }
                 }
-
+                if (playerScore == 3)
+                {
+                    Console.WriteLine("You Win ! ");
+                }
+                else {
+                    Console.WriteLine("You Lose ! ");
+                }
                 Console.WriteLine("Do you wanna continue playing ? enter 'y' if yes , press any key if no");
                 char userChoice = Console.ReadKey().KeyChar;
                 if (userChoice != 'y')
