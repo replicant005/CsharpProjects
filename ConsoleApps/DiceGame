@@ -1,0 +1,68 @@
+using System;
+
+namespace DiceGame {
+
+    class Program {
+
+        static void Main(string[] args) {
+
+            // the value of the dice will be random,-- but why these are a global variable - might be using it outside the loop 
+            int playerRandomValue; 
+            int enemyRandomValue;
+
+            int playerPoints = 0;
+            int enemyPoints = 0;
+
+            Random random = new Random();
+
+            // for loop - 10 chances to see who wins 
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("press any key to roll the dice ");
+                Console.ReadKey();
+                Console.WriteLine("\n");
+                playerRandomValue = random.Next(1,7);
+                Console.WriteLine("you rolled a " + playerRandomValue);
+
+                // this piece of code, makes the proces respond after 1 second, as the thread sleeps for 1000 ms
+                Console.WriteLine("...");
+                System.Threading.Thread.Sleep(1000);    
+
+                enemyRandomValue = random.Next(1,7);
+                Console.WriteLine("enemy rolled a " + enemyRandomValue);
+                Console.WriteLine();
+
+                // this if else block updates and notifies for each round 
+                if (playerRandomValue > enemyRandomValue)
+                {
+                    playerPoints++;
+                    Console.WriteLine("You win this round");
+                }
+                else if (playerRandomValue < enemyRandomValue)
+                {
+                    enemyPoints++;
+                    Console.WriteLine("You lose this round");
+                }
+                else {
+                    Console.WriteLine("its a draw");
+                }
+
+                Console.WriteLine("Player Points : "+ playerPoints + " Enemy Points : " + enemyPoints );
+                Console.WriteLine();
+            }
+
+            // this if else block checks for the whole game 
+            if (playerPoints > enemyPoints)
+            {
+                Console.WriteLine("You won this game");
+            }
+            else if (playerPoints < enemyPoints)
+            {
+                Console.WriteLine("You lost this game");
+            }
+            else Console.WriteLine("its a draw");
+        }
+    
+    }
+
+}
